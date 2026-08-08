@@ -400,5 +400,5 @@
       "byCDN": {}
     }
   },
-  "updatePolicy": "automatic"
+  "updatePolicy": "disabled"
 }
