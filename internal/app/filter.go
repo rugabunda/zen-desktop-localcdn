@@ -9,12 +9,12 @@ import (
 	"sync"
 	"time"
 
-	"github.com/irbis-sh/zen-desktop/internal/asset"
-	"github.com/irbis-sh/zen-desktop/internal/constants"
-	"github.com/irbis-sh/zen-desktop/internal/filter"
-	"github.com/irbis-sh/zen-desktop/internal/filter/whitelistserver"
-	"github.com/irbis-sh/zen-desktop/internal/filterliststore"
-	"github.com/irbis-sh/zen-desktop/internal/networkrules"
+	"github.com/rugabunda/zen-desktop-localcdn/internal/asset"
+	"github.com/rugabunda/zen-desktop-localcdn/internal/constants"
+	"github.com/rugabunda/zen-desktop-localcdn/internal/filter"
+	"github.com/rugabunda/zen-desktop-localcdn/internal/filter/whitelistserver"
+	"github.com/rugabunda/zen-desktop-localcdn/internal/filterliststore"
+	"github.com/rugabunda/zen-desktop-localcdn/internal/networkrules"
 )
 
 const myRulesFilterName = "My rules"
