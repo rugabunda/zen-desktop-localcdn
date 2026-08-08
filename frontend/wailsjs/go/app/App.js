@@ -6,12 +6,32 @@ export function ExportCustomFilterLists() {
   return window['go']['app']['App']['ExportCustomFilterLists']();
 }
 
+export function ExportLocalResourcesMappings() {
+  return window['go']['app']['App']['ExportLocalResourcesMappings']();
+}
+
+export function GetLocalResourcesLibraries() {
+  return window['go']['app']['App']['GetLocalResourcesLibraries']();
+}
+
+export function GetLocalResourcesSettings() {
+  return window['go']['app']['App']['GetLocalResourcesSettings']();
+}
+
+export function GetLocalResourcesStats() {
+  return window['go']['app']['App']['GetLocalResourcesStats']();
+}
+
 export function HardwareKeyUnavailableReason() {
   return window['go']['app']['App']['HardwareKeyUnavailableReason']();
 }
 
 export function ImportCustomFilterLists() {
   return window['go']['app']['App']['ImportCustomFilterLists']();
+}
+
+export function ImportLocalResourcesMappings() {
+  return window['go']['app']['App']['ImportLocalResourcesMappings']();
 }
 
 export function IsNoSelfUpdate() {
@@ -24,6 +44,10 @@ export function OnSecondInstanceLaunch(arg1) {
 
 export function OpenLogsDirectory() {
   return window['go']['app']['App']['OpenLogsDirectory']();
+}
+
+export function ResetLocalResourcesStats() {
+  return window['go']['app']['App']['ResetLocalResourcesStats']();
 }
 
 export function RestartApplication() {
@@ -40,6 +64,22 @@ export function SelectAppForRouting() {
 
 export function SetCAKeyStorage(arg1) {
   return window['go']['app']['App']['SetCAKeyStorage'](arg1);
+}
+
+export function SetLocalResourcesBlockMissing(arg1) {
+  return window['go']['app']['App']['SetLocalResourcesBlockMissing'](arg1);
+}
+
+export function SetLocalResourcesCustomDir(arg1) {
+  return window['go']['app']['App']['SetLocalResourcesCustomDir'](arg1);
+}
+
+export function SetLocalResourcesEnabled(arg1) {
+  return window['go']['app']['App']['SetLocalResourcesEnabled'](arg1);
+}
+
+export function SetLocalResourcesLibraryEnabled(arg1, arg2) {
+  return window['go']['app']['App']['SetLocalResourcesLibraryEnabled'](arg1, arg2);
 }
 
 export function StartProxy() {

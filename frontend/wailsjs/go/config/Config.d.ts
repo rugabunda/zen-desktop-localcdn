@@ -20,6 +20,10 @@ export function GetIgnoredHosts():Promise<Array<string>>;
 
 export function GetKeyStorage():Promise<config.KeyStorageType>;
 
+export function GetLocalResources():Promise<config.LocalResources>;
+
+export function GetLocalResourcesStats():Promise<config.LocalResourcesStats>;
+
 export function GetLocale():Promise<string>;
 
 export function GetPACPort():Promise<number>;
@@ -38,6 +42,8 @@ export function GetVersion():Promise<string>;
 
 export function RemoveFilterList(arg1:string):Promise<void>;
 
+export function ResetLocalResourcesStats():Promise<void>;
+
 export function RunMigrations():Promise<void>;
 
 export function SetCAInstalled(arg1:boolean):Promise<void>;
@@ -45,6 +51,18 @@ export function SetCAInstalled(arg1:boolean):Promise<void>;
 export function SetIgnoredHosts(arg1:Array<string>):Promise<void>;
 
 export function SetKeyStorage(arg1:config.KeyStorageType):Promise<void>;
+
+export function SetLocalResourcesBlockMissing(arg1:boolean):Promise<void>;
+
+export function SetLocalResourcesCustomDir(arg1:string):Promise<void>;
+
+export function SetLocalResourcesCustomMappings(arg1:Array<config.LocalResourceMapping>):Promise<void>;
+
+export function SetLocalResourcesEnabled(arg1:boolean):Promise<void>;
+
+export function SetLocalResourcesLibraryEnabled(arg1:string,arg2:boolean):Promise<void>;
+
+export function SetLocalResourcesStats(arg1:config.LocalResourcesStats):Promise<void>;
 
 export function SetLocale(arg1:string):Promise<void>;
 
