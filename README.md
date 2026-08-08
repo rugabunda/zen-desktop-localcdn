@@ -55,10 +55,10 @@ Zen is an open-source system-wide ad-blocker and privacy guard for Windows, macO
   <tbody>
     <tr>
       <td>
-        Request history shows all requests blocked by Zen. Each request can be inspected to see which filter and rule blocked it.
+        Request history shows all requests blocked (red) or injected (green) by Zen. Each request can be inspected to see which filter and rule blocked it.
       </td>
       <td>
-        Zen comes with many pre-installed filters. You can also add your own by providing a URL to a hosts file or an EasyList-style filter.
+        This branch of Zen comes with local CDN injection along wtih pre-installed frameworks. You can also add your own by providing a local copy.
       </td>
     </tr>
     <tr>
