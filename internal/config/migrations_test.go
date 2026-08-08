@@ -7,7 +7,7 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/irbis-sh/zen-desktop/internal/constants"
+	"github.com/rugabunda/zen-desktop-localcdn/internal/constants"
 )
 
 func TestMigrationV0220RemovesStaleAntiAdblockList(t *testing.T) {

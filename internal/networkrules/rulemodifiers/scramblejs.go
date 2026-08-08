@@ -11,7 +11,7 @@ import (
 	"regexp"
 	"strings"
 
-	"github.com/irbis-sh/zen-desktop/internal/httprewrite"
+	"github.com/rugabunda/zen-desktop-localcdn/internal/httprewrite"
 	"golang.org/x/net/html"
 )
 

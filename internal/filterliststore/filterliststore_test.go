@@ -14,7 +14,7 @@ import (
 	"testing"
 	"time"
 
-	"github.com/irbis-sh/zen-desktop/internal/filterliststore/diskcache"
+	"github.com/rugabunda/zen-desktop-localcdn/internal/filterliststore/diskcache"
 )
 
 const (

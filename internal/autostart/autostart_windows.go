@@ -12,7 +12,7 @@ import (
 	"log"
 	"strings"
 
-	"github.com/irbis-sh/zen-desktop/internal/constants"
+	"github.com/rugabunda/zen-desktop-localcdn/internal/constants"
 	"golang.org/x/sys/windows/registry"
 )
 

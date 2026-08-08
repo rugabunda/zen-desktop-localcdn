@@ -10,8 +10,8 @@ import (
 	"net"
 	"net/http"
 
-	"github.com/irbis-sh/zen-desktop/internal/fetchmeta"
-	"github.com/irbis-sh/zen-desktop/internal/pagestyle"
+	"github.com/rugabunda/zen-desktop-localcdn/internal/fetchmeta"
+	"github.com/rugabunda/zen-desktop-localcdn/internal/pagestyle"
 )
 
 //go:embed errorpage.html

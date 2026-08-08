@@ -4,7 +4,7 @@ import (
 	"net/http"
 	"testing"
 
-	"github.com/irbis-sh/zen-desktop/internal/fetchmeta"
+	"github.com/rugabunda/zen-desktop-localcdn/internal/fetchmeta"
 )
 
 func TestIsUserNavigation(t *testing.T) {

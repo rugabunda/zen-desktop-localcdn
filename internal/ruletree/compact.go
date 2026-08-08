@@ -1,6 +1,6 @@
 package ruletree
 
-import "github.com/irbis-sh/zen-desktop/internal/trimslice"
+import "github.com/rugabunda/zen-desktop-localcdn/internal/trimslice"
 
 // Compact shrinks internal slice capacities to reduce memory usage.
 func (t *Tree[T]) Compact() {

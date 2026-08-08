@@ -12,9 +12,9 @@ import (
 	"testing"
 	"testing/iotest"
 
-	"github.com/irbis-sh/zen-desktop/internal/filterliststore"
-	"github.com/irbis-sh/zen-desktop/internal/networkrules/rule"
-	"github.com/irbis-sh/zen-desktop/internal/process"
+	"github.com/rugabunda/zen-desktop-localcdn/internal/filterliststore"
+	"github.com/rugabunda/zen-desktop-localcdn/internal/networkrules/rule"
+	"github.com/rugabunda/zen-desktop-localcdn/internal/process"
 )
 
 func TestAddURLThreadsCtxAndModeToEveryFetch(t *testing.T) {

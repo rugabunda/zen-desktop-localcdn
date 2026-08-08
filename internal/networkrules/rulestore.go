@@ -4,8 +4,8 @@ import (
 	"fmt"
 	"regexp"
 
-	"github.com/irbis-sh/zen-desktop/internal/ruletree"
-	"github.com/irbis-sh/zen-desktop/internal/trimslice"
+	"github.com/rugabunda/zen-desktop-localcdn/internal/ruletree"
+	"github.com/rugabunda/zen-desktop-localcdn/internal/trimslice"
 )
 
 // ruleStore matches URLs against ad-block style patterns with associated data.

@@ -14,11 +14,11 @@ import (
 	"strings"
 	"sync"
 
-	"github.com/irbis-sh/zen-desktop/internal/fetchmeta"
-	"github.com/irbis-sh/zen-desktop/internal/filterliststore"
-	"github.com/irbis-sh/zen-desktop/internal/networkrules/rule"
-	"github.com/irbis-sh/zen-desktop/internal/process"
-	"github.com/irbis-sh/zen-desktop/internal/redacted"
+	"github.com/rugabunda/zen-desktop-localcdn/internal/fetchmeta"
+	"github.com/rugabunda/zen-desktop-localcdn/internal/filterliststore"
+	"github.com/rugabunda/zen-desktop-localcdn/internal/networkrules/rule"
+	"github.com/rugabunda/zen-desktop-localcdn/internal/process"
+	"github.com/rugabunda/zen-desktop-localcdn/internal/redacted"
 )
 
 // filterActionObserver observes filter events.

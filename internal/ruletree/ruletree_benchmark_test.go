@@ -36,7 +36,7 @@ import (
 	"runtime"
 	"testing"
 
-	"github.com/irbis-sh/zen-desktop/internal/ruletree"
+	"github.com/rugabunda/zen-desktop-localcdn/internal/ruletree"
 )
 
 const baseSeed = 42

@@ -7,7 +7,7 @@ import (
 	"runtime"
 	"strings"
 
-	"github.com/irbis-sh/zen-desktop/internal/constants"
+	"github.com/rugabunda/zen-desktop-localcdn/internal/constants"
 )
 
 func replaceExecutable(tempDir string) error {

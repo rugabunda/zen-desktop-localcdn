@@ -6,13 +6,13 @@ import (
 	"fmt"
 	"net/http"
 
-	"github.com/irbis-sh/zen-desktop/internal/asset/cosmetic"
-	"github.com/irbis-sh/zen-desktop/internal/asset/cssrule"
-	"github.com/irbis-sh/zen-desktop/internal/asset/extendedcss"
-	"github.com/irbis-sh/zen-desktop/internal/asset/jsrule"
-	"github.com/irbis-sh/zen-desktop/internal/asset/scriptlet"
-	"github.com/irbis-sh/zen-desktop/internal/csp"
-	"github.com/irbis-sh/zen-desktop/internal/httprewrite"
+	"github.com/rugabunda/zen-desktop-localcdn/internal/asset/cosmetic"
+	"github.com/rugabunda/zen-desktop-localcdn/internal/asset/cssrule"
+	"github.com/rugabunda/zen-desktop-localcdn/internal/asset/extendedcss"
+	"github.com/rugabunda/zen-desktop-localcdn/internal/asset/jsrule"
+	"github.com/rugabunda/zen-desktop-localcdn/internal/asset/scriptlet"
+	"github.com/rugabunda/zen-desktop-localcdn/internal/csp"
+	"github.com/rugabunda/zen-desktop-localcdn/internal/httprewrite"
 )
 
 const (
