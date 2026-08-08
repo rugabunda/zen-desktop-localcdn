@@ -17,7 +17,7 @@ func TestClearClosesServerOnUnsupportedDE(t *testing.T) {
 	m := newTestManager(port)
 	m.unsetSystemProxy = func() error { return ErrUnsupportedDesktopEnvironment }
 
-	if err := m.Set(1234, nil, allowAll); err != nil {
+	if err := m.Set(1234, nil, nil, allowAll); err != nil {
 		t.Fatalf("first Set: %v", err)
 	}
 
@@ -31,7 +31,7 @@ func TestClearClosesServerOnUnsupportedDE(t *testing.T) {
 	assertPortFree(t, port)
 
 	// The regression: a second Set on the same fixed port must succeed.
-	if err := m.Set(1234, nil, allowAll); err != nil {
+	if err := m.Set(1234, nil, nil, allowAll); err != nil {
 		t.Fatalf("second Set on the same port: %v", err)
 	}
 	t.Cleanup(func() { m.Clear() })
@@ -41,14 +41,14 @@ func TestClearClosesServerOnUnsupportedDE(t *testing.T) {
 func TestSetOnOccupiedPortKeepsPreviousServer(t *testing.T) {
 	port := freePort(t)
 	m := newTestManager(port)
-	if err := m.Set(1234, nil, allowAll); err != nil {
+	if err := m.Set(1234, nil, nil, allowAll); err != nil {
 		t.Fatalf("first Set: %v", err)
 	}
 	t.Cleanup(func() { m.Clear() })
 	previous := m.server
 
 	// The port is now held by the manager's own server.
-	if err := m.Set(1234, nil, allowAll); err == nil {
+	if err := m.Set(1234, nil, nil, allowAll); err == nil {
 		t.Fatal("second Set on the occupied port succeeded, want error")
 	}
 	if m.server != previous {
@@ -64,7 +64,7 @@ func TestSetClosesServerOnSystemProxyFailure(t *testing.T) {
 	unsetCalled := false
 	m.unsetSystemProxy = func() error { unsetCalled = true; return nil }
 
-	if err := m.Set(1234, nil, allowAll); err == nil {
+	if err := m.Set(1234, nil, nil, allowAll); err == nil {
 		t.Fatal("Set succeeded, want error")
 	}
 	if m.server != nil || m.listener != nil {
@@ -76,7 +76,7 @@ func TestSetClosesServerOnSystemProxyFailure(t *testing.T) {
 	assertPortFree(t, port)
 
 	m.setSystemProxy = func(string) error { return nil }
-	if err := m.Set(1234, nil, allowAll); err != nil {
+	if err := m.Set(1234, nil, nil, allowAll); err != nil {
 		t.Fatalf("Set after failed Set: %v", err)
 	}
 	t.Cleanup(func() { m.Clear() })
@@ -89,7 +89,7 @@ func TestSetKeepsServerOnUnsupportedDE(t *testing.T) {
 	unsetCalled := false
 	m.unsetSystemProxy = func() error { unsetCalled = true; return nil }
 
-	err := m.Set(1234, nil, allowAll)
+	err := m.Set(1234, nil, nil, allowAll)
 	if !errors.Is(err, ErrUnsupportedDesktopEnvironment) {
 		t.Fatalf("Set error = %v, want ErrUnsupportedDesktopEnvironment", err)
 	}
@@ -114,7 +114,7 @@ func TestClearRetriesFailedUnset(t *testing.T) {
 		return nil
 	}
 
-	if err := m.Set(1234, nil, allowAll); err != nil {
+	if err := m.Set(1234, nil, nil, allowAll); err != nil {
 		t.Fatalf("Set: %v", err)
 	}
 	if err := m.Clear(); err == nil {
