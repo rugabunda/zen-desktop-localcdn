@@ -13,20 +13,21 @@ import (
 	"sync/atomic"
 	"time"
 
-	"github.com/irbis-sh/zen-desktop/internal/asset"
-	"github.com/irbis-sh/zen-desktop/internal/certgen"
-	"github.com/irbis-sh/zen-desktop/internal/certstore"
-	"github.com/irbis-sh/zen-desktop/internal/config"
-	"github.com/irbis-sh/zen-desktop/internal/constants"
-	"github.com/irbis-sh/zen-desktop/internal/filter/whitelistserver"
-	"github.com/irbis-sh/zen-desktop/internal/filterliststore"
-	"github.com/irbis-sh/zen-desktop/internal/hwkey"
-	"github.com/irbis-sh/zen-desktop/internal/logger"
-	"github.com/irbis-sh/zen-desktop/internal/proxy"
-	"github.com/irbis-sh/zen-desktop/internal/routing"
-	"github.com/irbis-sh/zen-desktop/internal/selfupdate"
-	"github.com/irbis-sh/zen-desktop/internal/sysproxy"
-	"github.com/irbis-sh/zen-desktop/internal/systray"
+	"github.com/rugabunda/zen-desktop-localcdn/internal/asset"
+	"github.com/rugabunda/zen-desktop-localcdn/internal/certgen"
+	"github.com/rugabunda/zen-desktop-localcdn/internal/certstore"
+	"github.com/rugabunda/zen-desktop-localcdn/internal/config"
+	"github.com/rugabunda/zen-desktop-localcdn/internal/constants"
+	"github.com/rugabunda/zen-desktop-localcdn/internal/filter/whitelistserver"
+	"github.com/rugabunda/zen-desktop-localcdn/internal/filterliststore"
+	"github.com/rugabunda/zen-desktop-localcdn/internal/hwkey"
+	"github.com/rugabunda/zen-desktop-localcdn/internal/localcdn"
+	"github.com/rugabunda/zen-desktop-localcdn/internal/logger"
+	"github.com/rugabunda/zen-desktop-localcdn/internal/proxy"
+	"github.com/rugabunda/zen-desktop-localcdn/internal/routing"
+	"github.com/rugabunda/zen-desktop-localcdn/internal/selfupdate"
+	"github.com/rugabunda/zen-desktop-localcdn/internal/sysproxy"
+	"github.com/rugabunda/zen-desktop-localcdn/internal/systray"
 	"github.com/wailsapp/wails/v2/pkg/options"
 	"github.com/wailsapp/wails/v2/pkg/runtime"
 )
@@ -74,6 +75,8 @@ type App struct {
 	// pendingRestart records an armed restart.
 	pendingRestart      bool
 	pendingRestartStart bool
+	localcdnMgr     *localcdn.Manager
+	localEngine     *localcdn.Engine
 }
 
 // NewApp initializes the app.
@@ -109,6 +112,7 @@ func NewApp(name string, appConfig *config.Config, startOnDomReady bool) (*App, 
 		startOnDomReady:    startOnDomReady,
 		systemProxyManager: systemProxyManager,
 		filterListStore:    filterListStore,
+		localcdnMgr:        localcdn.NewManager(appConfig),
 	}, nil
 }
 
@@ -126,7 +130,7 @@ func (a *App) commonStartup(ctx context.Context) {
 	}
 
 	a.systrayMgr = systrayMgr
-	a.frontendEvents = newFrontendEvents(ctx)
+	a.frontendEvents = newFrontendEvents(ctx, a.localcdnMgr.Stats().RecordFilterHit)
 	a.config.RunMigrations()
 	a.systrayMgr.Init(ctx)
 
@@ -229,6 +233,30 @@ func (a *App) StartProxy() (err error) {
 		return err
 	}
 
+	localEngine, err := localcdn.NewEngine(localcdn.Options{
+		Settings: a.config.GetLocalResources(),
+		IsExcluded: func(host string) bool {
+			return sysproxy.IsExcludedHost(host, a.config.GetIgnoredHosts())
+		},
+		IsUserExcluded: func(host string) bool {
+			return sysproxy.IsUserExcludedHost(host, a.config.GetIgnoredHosts())
+		},
+		Stats: a.localcdnMgr.Stats(),
+		SaveStats: func(stats config.LocalResourcesStats) error {
+			return a.config.SetLocalResourcesStats(stats)
+		},
+	})
+	if err != nil {
+		return fmt.Errorf("create local resource engine: %v", err)
+	}
+	a.localEngine = localEngine
+	log.Printf("local resource engine enabled: %v", a.config.GetLocalResources().Enabled)
+
+	defer func() {
+		if err != nil {
+			a.localEngine = nil
+		}
+	}()
 	if err := whitelistSrv.Start(); err != nil {
 		return fmt.Errorf("start whitelist server: %v", err)
 	}
@@ -261,7 +289,11 @@ func (a *App) StartProxy() (err error) {
 
 	routingPolicy := routing.NewPolicy(a.config.GetRouting())
 
-	a.proxy, err = proxy.NewProxy(filter, certGenerator, a.config.GetPort(), routingPolicy.ShouldProxy, constants.LocalEndpointHost, asset.NewHandler(assetInjector))
+	a.proxy, err = proxy.NewProxy(&localcdnFilter{
+		filter: filter,
+		local:  localEngine,
+		events: a.frontendEvents,
+	}, certGenerator, a.config.GetPort(), routingPolicy.ShouldProxy, constants.LocalEndpointHost, asset.NewHandler(assetInjector))
 	if err != nil {
 		return fmt.Errorf("create proxy: %v", err)
 	}
@@ -272,7 +304,7 @@ func (a *App) StartProxy() (err error) {
 	}
 
 	a.systemProxyManager.SetPACPort(a.config.GetPACPort())
-	if err := a.systemProxyManager.Set(port, a.config.GetIgnoredHosts(), routingPolicy.ShouldProxy); err != nil {
+	if err := a.systemProxyManager.Set(port, a.config.GetIgnoredHosts(), localcdn.CDNHosts(), routingPolicy.ShouldProxy); err != nil {
 		if errors.Is(err, sysproxy.ErrUnsupportedDesktopEnvironment) {
 			a.frontendEvents.OnUnsupportedDE(err)
 		} else {
@@ -340,11 +372,14 @@ func (a *App) StopProxy() (err error) {
 		return fmt.Errorf("stop proxy: %w", err)
 	}
 
+	a.localEngine.Flush()
+
 	if err := a.whitelistSrv.Stop(); err != nil {
 		return fmt.Errorf("stop whitelist server: %w", err)
 	}
 
 	a.whitelistSrv = nil
+	a.localEngine = nil
 	a.proxy = nil
 	a.proxyOn = false
 
