@@ -16,8 +16,8 @@ import (
 	"sync"
 	"time"
 
-	"github.com/irbis-sh/zen-desktop/internal/process"
-	"github.com/irbis-sh/zen-desktop/internal/redacted"
+	"github.com/rugabunda/zen-desktop-localcdn/internal/process"
+	"github.com/rugabunda/zen-desktop-localcdn/internal/redacted"
 )
 
 const (
@@ -208,7 +208,10 @@ func (p *Proxy) proxyHTTP(w http.ResponseWriter, r *http.Request, processInfo pr
 		}
 
 		if filterResp != nil {
-			filterResp.Write(w)
+			writeResp(w, filterResp)
+			if filterResp.Body != nil {
+				filterResp.Body.Close()
+			}
 			return
 		}
 	}

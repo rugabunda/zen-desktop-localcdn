@@ -8,7 +8,7 @@ import (
 	"net"
 	"net/http"
 
-	"github.com/irbis-sh/zen-desktop/internal/redacted"
+	"github.com/rugabunda/zen-desktop-localcdn/internal/redacted"
 )
 
 func (p *Proxy) proxyWebsocketTLS(w http.ResponseWriter, req *http.Request) {
