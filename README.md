@@ -49,7 +49,7 @@ Zen is an open-source system-wide ad-blocker and privacy guard for Windows, macO
   <thead>
     <tr>
         <th>Request history</th>
-        <th>Filter list manager</th>
+        <th>CDN Settings</th>
     </tr>
   </thead>
   <tbody>
