@@ -9,7 +9,7 @@ import (
 	"os"
 	"path/filepath"
 
-	"github.com/irbis-sh/zen-desktop/internal/constants"
+	"github.com/rugabunda/zen-desktop-localcdn/internal/constants"
 	"gopkg.in/natefinch/lumberjack.v2"
 )
 
@@ -29,7 +29,11 @@ func SetupLogger() error {
 		Compress:   true,
 	}
 
-	log.SetOutput(io.MultiWriter(os.Stdout, fileLogger))
+	// Write to the file first: io.MultiWriter stops at the first writer error,
+	// and os.Stdout is invalid when a GUI-subsystem build is launched without
+	// a console. Ordering the file logger first guarantees application.log is
+	// always written while still mirroring to the console when one exists.
+	log.SetOutput(io.MultiWriter(fileLogger, os.Stdout))
 
 	return nil
 }
