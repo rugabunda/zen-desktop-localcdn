@@ -11,8 +11,8 @@ import (
 	"strings"
 
 	"github.com/blang/semver"
-	"github.com/irbis-sh/zen-desktop/internal/autostart"
-	"github.com/irbis-sh/zen-desktop/internal/constants"
+	"github.com/rugabunda/zen-desktop-localcdn/internal/autostart"
+	"github.com/rugabunda/zen-desktop-localcdn/internal/constants"
 )
 
 type migration struct {
@@ -354,6 +354,21 @@ var migrations = []migration{
 			c.Filter.FilterLists = filtered
 			if removed {
 				log.Printf("v0.22.0 migration: removed stale anti-adblock list")
+			}
+			return nil
+		})
+	}},
+	{"v0.26.0", func(c *Config) error {
+		// Enable the local resource interception & injection engine for
+		// existing installs. Fresh installs get the same default from
+		// default-config.json.
+		return c.update(func() error {
+			c.LocalResources.Enabled = true
+			if c.LocalResources.Stats.ByLibrary == nil {
+				c.LocalResources.Stats.ByLibrary = make(map[string]int64)
+			}
+			if c.LocalResources.Stats.ByCDN == nil {
+				c.LocalResources.Stats.ByCDN = make(map[string]int64)
 			}
 			return nil
 		})
