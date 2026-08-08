@@ -42,6 +42,44 @@ Zen is an open-source system-wide ad-blocker and privacy guard for Windows, macO
 > this build — set `"updatePolicy": "disabled"` in `config.json` (located under
 > `%LOCALAPPDATA%\Zen\Config\` on Windows). Fresh installs from this fork
 > default to `disabled`.
+>
+> ## Screenshots
+
+<table>
+  <thead>
+    <tr>
+        <th>Request history</th>
+        <th>Filter list manager</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>
+        Request history shows all requests blocked by Zen. Each request can be inspected to see which filter and rule blocked it.
+      </td>
+      <td>
+        Zen comes with many pre-installed filters. You can also add your own by providing a URL to a hosts file or an EasyList-style filter.
+      </td>
+    </tr>
+    <tr>
+      <td align="center" valign="top">
+        <picture>
+          <source media="(prefers-color-scheme: dark)" srcset="https://github.com/user-attachments/assets/0b65125e-831b-4881-9fc1-181f4f70cc42">
+          <source media="(prefers-color-scheme: light)" srcset="https://github.com/user-attachments/assets/0b65125e-831b-4881-9fc1-181f4f70cc42">
+          <img src="https://github.com/user-attachments/assets/0b65125e-831b-4881-9fc1-181f4f70cc42">
+        </picture>
+      </td>
+      <td align="center" valign="top">
+        <picture>
+          <source media="(prefers-color-scheme: dark)" srcset="https://github.com/user-attachments/assets/9485a194-de2e-4225-bf34-e655cfb51520">
+          <source media="(prefers-color-scheme: light)" srcset="https://github.com/user-attachments/assets/9485a194-de2e-4225-bf34-e655cfb51520">
+          <img src="https://github.com/user-attachments/assets/9485a194-de2e-4225-bf34-e655cfb51520">
+        </picture>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
 
 ## Downloads
 
