@@ -21,7 +21,7 @@ import (
 	"testing"
 	"time"
 
-	"github.com/irbis-sh/zen-desktop/internal/process"
+	"github.com/rugabunda/zen-desktop-localcdn/internal/process"
 )
 
 // TestNetDialerIsBounded pins the property every outbound path leans on: the shared

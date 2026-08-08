@@ -1,4 +1,4 @@
-module github.com/irbis-sh/zen-desktop
+module github.com/rugabunda/zen-desktop-localcdn
 
 // Note: Always set the patch version when updating the Go version.
 // Omitting the patch version may cause some Go commands to fail.

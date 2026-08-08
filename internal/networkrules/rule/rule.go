@@ -8,8 +8,8 @@ import (
 	"net/url"
 	"strings"
 
-	"github.com/irbis-sh/zen-desktop/internal/networkrules/rulemodifiers"
-	"github.com/irbis-sh/zen-desktop/internal/networkrules/rulemodifiers/removejsconstant"
+	"github.com/rugabunda/zen-desktop-localcdn/internal/networkrules/rulemodifiers"
+	"github.com/rugabunda/zen-desktop-localcdn/internal/networkrules/rulemodifiers/removejsconstant"
 )
 
 // Rule represents modifiers of a rule.

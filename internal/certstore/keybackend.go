@@ -13,7 +13,7 @@ import (
 	"runtime"
 
 	"github.com/hectane/go-acl"
-	"github.com/irbis-sh/zen-desktop/internal/hwkey"
+	"github.com/rugabunda/zen-desktop-localcdn/internal/hwkey"
 )
 
 // keyBackend generates, opens and removes the root's private key.

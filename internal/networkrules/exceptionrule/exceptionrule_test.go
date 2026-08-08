@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"testing"
 
-	"github.com/irbis-sh/zen-desktop/internal/networkrules/rule"
+	"github.com/rugabunda/zen-desktop-localcdn/internal/networkrules/rule"
 )
 
 func TestExceptionRule(t *testing.T) {

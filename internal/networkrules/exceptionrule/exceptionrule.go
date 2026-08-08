@@ -3,7 +3,7 @@ package exceptionrule
 import (
 	"net/http"
 
-	"github.com/irbis-sh/zen-desktop/internal/networkrules/rule"
+	"github.com/rugabunda/zen-desktop-localcdn/internal/networkrules/rule"
 )
 
 type ExceptionRule struct {

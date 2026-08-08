@@ -13,3 +13,18 @@ frontend/package.json.md5
 .idea
 **/*.pprof
 **/*.out
+
+# Reference clones and local helper scripts (not part of the module)
+/localcdn/
+/localcdn/
+reference/
+fix.ps1
+build-distilled-context.ps1
+
+# Scratch/diff artifacts (not part of the module)
+run.bat
+diff-summary.txt
+full-diff.patch
+new-files.txt
+new-files-preview.txt
+scripts/_build-new-locales.mjs

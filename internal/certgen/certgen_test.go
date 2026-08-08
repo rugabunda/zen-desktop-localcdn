@@ -18,7 +18,7 @@ import (
 	"testing"
 	"time"
 
-	"github.com/irbis-sh/zen-desktop/internal/certstore"
+	"github.com/rugabunda/zen-desktop-localcdn/internal/certstore"
 )
 
 const testOrgName = "Zen Test"

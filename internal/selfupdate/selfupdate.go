@@ -16,8 +16,8 @@ import (
 	"sync"
 	"time"
 
-	"github.com/irbis-sh/zen-desktop/internal/config"
-	"github.com/irbis-sh/zen-desktop/internal/constants"
+	"github.com/rugabunda/zen-desktop-localcdn/internal/config"
+	"github.com/rugabunda/zen-desktop-localcdn/internal/constants"
 )
 
 // NoSelfUpdate is set to "true" for builds distributed to package managers to prevent auto-updating. It is typed as a string because the linker allows only setting string variables at compile time (see https://pkg.go.dev/cmd/link).

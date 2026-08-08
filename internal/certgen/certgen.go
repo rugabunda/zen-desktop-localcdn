@@ -5,7 +5,7 @@ import (
 	"fmt"
 	"time"
 
-	"github.com/irbis-sh/zen-desktop/internal/certstore"
+	"github.com/rugabunda/zen-desktop-localcdn/internal/certstore"
 )
 
 const (

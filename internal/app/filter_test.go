@@ -6,8 +6,8 @@ import (
 	"slices"
 	"testing"
 
-	"github.com/irbis-sh/zen-desktop/internal/filter"
-	"github.com/irbis-sh/zen-desktop/internal/filterliststore"
+	"github.com/rugabunda/zen-desktop-localcdn/internal/filter"
+	"github.com/rugabunda/zen-desktop-localcdn/internal/filterliststore"
 )
 
 func TestRunBuildPasses(t *testing.T) {

@@ -13,7 +13,7 @@ import (
 	"slices"
 	"testing"
 
-	"github.com/irbis-sh/zen-desktop/internal/constants"
+	"github.com/rugabunda/zen-desktop-localcdn/internal/constants"
 )
 
 type failingHTTPClient struct{}

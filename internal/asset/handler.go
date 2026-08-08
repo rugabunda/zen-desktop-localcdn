@@ -6,7 +6,7 @@ import (
 	"net/url"
 	"strconv"
 
-	"github.com/irbis-sh/zen-desktop/internal/redacted"
+	"github.com/rugabunda/zen-desktop-localcdn/internal/redacted"
 )
 
 // Handler serves injected page assets. It is mounted on the proxy under

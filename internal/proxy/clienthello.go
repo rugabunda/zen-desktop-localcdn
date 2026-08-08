@@ -15,8 +15,8 @@ import (
 	"slices"
 	"sync/atomic"
 
-	"github.com/irbis-sh/zen-desktop/internal/redacted"
 	utls "github.com/refraction-networking/utls"
+	"github.com/rugabunda/zen-desktop-localcdn/internal/redacted"
 )
 
 // Zen terminates the client's TLS and opens its own connection upstream. Made with

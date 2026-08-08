@@ -9,8 +9,8 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/irbis-sh/zen-desktop/internal/config"
-	"github.com/irbis-sh/zen-desktop/internal/hwkey"
+	"github.com/rugabunda/zen-desktop-localcdn/internal/config"
+	"github.com/rugabunda/zen-desktop-localcdn/internal/hwkey"
 )
 
 // These tests use the platform key store: in development builds that is the login keychain on

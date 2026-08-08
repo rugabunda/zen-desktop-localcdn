@@ -5,8 +5,8 @@ import (
 	"regexp"
 	"strings"
 
-	"github.com/irbis-sh/zen-desktop/internal/networkrules/exceptionrule"
-	"github.com/irbis-sh/zen-desktop/internal/networkrules/rule"
+	"github.com/rugabunda/zen-desktop-localcdn/internal/networkrules/exceptionrule"
+	"github.com/rugabunda/zen-desktop-localcdn/internal/networkrules/rule"
 )
 
 var (

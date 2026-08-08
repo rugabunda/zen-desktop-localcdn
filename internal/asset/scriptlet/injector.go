@@ -7,8 +7,8 @@ import (
 	"fmt"
 	"log"
 
-	"github.com/irbis-sh/zen-desktop/internal/hostmatch"
-	"github.com/irbis-sh/zen-desktop/internal/redacted"
+	"github.com/rugabunda/zen-desktop-localcdn/internal/hostmatch"
+	"github.com/rugabunda/zen-desktop-localcdn/internal/redacted"
 )
 
 var (

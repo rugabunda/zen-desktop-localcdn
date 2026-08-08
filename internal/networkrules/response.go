@@ -8,8 +8,8 @@ import (
 	"io"
 	"net/http"
 
-	"github.com/irbis-sh/zen-desktop/internal/networkrules/rule"
-	"github.com/irbis-sh/zen-desktop/internal/pagestyle"
+	"github.com/rugabunda/zen-desktop-localcdn/internal/networkrules/rule"
+	"github.com/rugabunda/zen-desktop-localcdn/internal/pagestyle"
 )
 
 // CreateBlockResponse creates a response for a blocked request.

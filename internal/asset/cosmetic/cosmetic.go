@@ -3,7 +3,7 @@ package cosmetic
 import (
 	"regexp"
 
-	"github.com/irbis-sh/zen-desktop/internal/asset/extendedcss"
+	"github.com/rugabunda/zen-desktop-localcdn/internal/asset/extendedcss"
 )
 
 var (

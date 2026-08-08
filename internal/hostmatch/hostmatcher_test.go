@@ -3,7 +3,7 @@ package hostmatch_test
 import (
 	"testing"
 
-	"github.com/irbis-sh/zen-desktop/internal/hostmatch"
+	"github.com/rugabunda/zen-desktop-localcdn/internal/hostmatch"
 )
 
 func TestHostMatcherPublic(t *testing.T) {

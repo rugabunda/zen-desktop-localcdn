@@ -20,7 +20,7 @@ import (
 	"time"
 
 	"github.com/hectane/go-acl"
-	"github.com/irbis-sh/zen-desktop/internal/config"
+	"github.com/rugabunda/zen-desktop-localcdn/internal/config"
 )
 
 // ErrNoSystemTrustStore signals that no system-wide certificate trust store exists

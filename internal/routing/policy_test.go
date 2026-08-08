@@ -4,7 +4,7 @@ import (
 	"runtime"
 	"testing"
 
-	"github.com/irbis-sh/zen-desktop/internal/config"
+	"github.com/rugabunda/zen-desktop-localcdn/internal/config"
 )
 
 func TestPolicyBlocklist(t *testing.T) {

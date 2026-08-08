@@ -76,9 +76,9 @@ in
   ldflags = [
     "-s"
     "-w"
-    "-X github.com/irbis-sh/zen-desktop/internal/config.Version=v${version}"
+    "-X github.com/rugabunda/zen-desktop-localcdn/internal/config.Version=v${version}"
     # Self-updating cannot work on a read-only store path.
-    "-X github.com/irbis-sh/zen-desktop/internal/selfupdate.NoSelfUpdate=true"
+    "-X github.com/rugabunda/zen-desktop-localcdn/internal/selfupdate.NoSelfUpdate=true"
     # InstanceID is deliberately not set: the fixed fallback UUID in
     # internal/constants keeps the single-instance lock working and the build reproducible.
   ];

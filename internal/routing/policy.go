@@ -7,7 +7,7 @@ import (
 	"runtime"
 	"strings"
 
-	"github.com/irbis-sh/zen-desktop/internal/config"
+	"github.com/rugabunda/zen-desktop-localcdn/internal/config"
 )
 
 const (
