@@ -10,7 +10,7 @@ description: >-
 ## Format
 
 ```
-<prefix>: <summary>
+<type>(<scope>): <summary>
 
 <long form description>
 
@@ -21,15 +21,16 @@ description: >-
 
 ### Subject line
 
-- **Prefix**: the repo path of the area changed, determined from the file paths in the diff:
+- **Type**: a Conventional Commits type, e.g. `feat`, `fix`, `docs`, `refactor`, `perf`, `test`, `build`, `chore`.
+- **Scope**: the subsystem name used in AGENTS.md, determined from the file paths in the diff:
   - Go package path relative to the repo root, e.g. `internal/sysproxy`, `internal/networkrules`. Nest deeper when the change is confined to a subpackage, e.g. `internal/asset/scriptlet`.
   - `frontend` for UI changes, without deeper nesting.
   - The directory for other areas, e.g. `docs`, `scripts`, `.github/workflows`.
-  - The filename for changes to a single top-level file, e.g. `go.mod`, `wails.json`.
-  - For a change spanning two areas, list both, comma-separated, e.g. `internal/proxy, internal/sysproxy`.
+  - The filename for changes to a single top-level file, e.g. `go.mod`, `wails.json`, `AGENTS.md`.
+  - For a change spanning two areas, list both, comma-separated, e.g. `fix(proxy, sysproxy): ...`.
   - `all` for cross-cutting changes spanning three or more areas.
 - **Summary**: completes the sentence "this change modifies Zen to \_\_\_". Imperative mood, lowercase start, no trailing period. Keep the whole subject line under ~72 characters.
-- Two closely related changes can be joined with `,`, e.g. `all: update copyright year to 2026, update copyright holders`.
+- Two closely related changes can be joined with `,`, e.g. `chore(all): update copyright year and holders`.
 
 ### Long form description
 
@@ -48,7 +49,7 @@ description: >-
 ## Workflow
 
 1. Run `git status` and `git diff` (plus `git diff --staged`) to see what is changing since the last commit.
-2. Determine the prefix from the changed file paths.
+2. Determine the type and scope from the changed file paths.
 3. Identify related issues from the diff context.
 4. Draft the message following the format above.
 5. For a draft-only request, stop after Step 4.

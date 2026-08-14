@@ -31,6 +31,19 @@ Use `task` commands when available.
 - The app's UI can be driven via a browser (e.g. using MCP) for debugging and testing features, including starting and stopping the proxy, and modifying filter lists or custom rules. When launching in dev mode, watch the output for the log line `Vite Server URL: http://localhost:5173/` and navigate to that URL.
 - In the canonical repo (not a fork), name branches `<github-username>/<description-slug>`. Get the username via `gh api user -q .login` if `gh` is available. No more than 3 words in the slug.
 
+## Commit & change labeling
+
+Every commit must be understandable on its own. Use Conventional Commits with a scope matching the subsystem names used in this file:
+
+type(scope): short imperative summary
+
+- One logical change per commit; split unrelated edits even when they touch the same file.
+- Never commit with bare messages like "push", "update", "wip".
+- Summary: imperative mood, <= 72 chars, no trailing period.
+- Body (recommended): 1-3 bullets - why (bug/behavior) and how verified (e.g. `task test`, `task lint`).
+- If the change alters documented behavior, update the matching AGENTS.md bullet in the same commit.
+- User-facing changes ship with their README/i18n updates in the same commit.
+
 ## Workflow guidelines
 
 - Never create an issue
@@ -46,6 +59,10 @@ Use `task` commands when available.
 - After any upstream sync, grep for leftover `github.com/irbis-sh` imports in newly added files and fold fixes into the rename commit via autosquash.
 - The localResources config migration is tagged `v0.26.0`; it must stay after upstream's latest migration tag.
 - The user performs pushes (`git push --force-with-lease origin feature/LocalCDN`). Do not push or ask for credentials.
+
+## Git diff
+
+`git config diff.external` is set to an external CLI; use `git diff --no-ext-diff` whenever diff output is needed.
 
 # Environment & Tooling Notes
 
