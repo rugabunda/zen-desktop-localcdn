@@ -1,13 +1,13 @@
 export namespace config {
 	
 	export enum RoutingMode {
-	    BLOCKLIST = "blocklist",
 	    ALLOWLIST = "allowlist",
+	    BLOCKLIST = "blocklist",
 	}
 	export enum UpdatePolicyType {
 	    AUTOMATIC = "automatic",
-	    PROMPT = "prompt",
 	    DISABLED = "disabled",
+	    PROMPT = "prompt",
 	}
 	export class FilterList {
 	    name: string;
