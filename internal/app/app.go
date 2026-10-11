@@ -75,8 +75,8 @@ type App struct {
 	// pendingRestart records an armed restart.
 	pendingRestart      bool
 	pendingRestartStart bool
-	localcdnMgr     *localcdn.Manager
-	localEngine     *localcdn.Engine
+	localcdnMgr         *localcdn.Manager
+	localEngine         *localcdn.Engine
 }
 
 // NewApp initializes the app.
