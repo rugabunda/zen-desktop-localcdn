@@ -10,6 +10,8 @@ Use `task` commands when available.
 
 - Run in dev mode: `task dev`
 - Build: `task build-dev`
+- Build (production installer, Windows; requires NSIS `makensis` on PATH and wails CLI matching go.mod): `task build:prod`
+- Build (production exe, no installer): `task build:prod-noupdate`
 - Tests (Go only): `task test`
 - Lint (Go and frontend): `task lint`
 - Lint (frontend only): `task frontend:lint`
@@ -55,8 +57,13 @@ type(scope): short imperative summary
 
 - `feature/LocalCDN` is the daily driver. It uses the `github.com/rugabunda/zen-desktop-localcdn` module path. Keep it rebased on top of `origin/master` (the fork's master mirrors upstream `irbis-sh/zen-desktop`).
 - `pr/LocalCDN` is parked. Never touch, rebase, or update it unless explicitly requested.
-- Rebase procedure: sync `origin/master` from upstream, rebase `feature/LocalCDN` onto it, resolve any conflicts keeping rugabunda import paths (never take upstream's `irbis-sh` imports), then verify with `go build ./...`, `go test ./internal/...`, and `task lint` before pushing.
-- After any upstream sync, grep for leftover `github.com/irbis-sh` imports in newly added files and fold fixes into the rename commit via autosquash.
+- Rebase procedure (exact steps):
+  1. `git fetch upstream`
+  2. Fast-forward the mirror (never commit on it): `git checkout master && git reset --hard upstream/master`
+  3. `git checkout feature/LocalCDN && git rebase master`
+  4. Resolve conflicts keeping rugabunda import paths (never take upstream's `irbis-sh` imports)
+  5. `git grep -n "github.com/irbis-sh" -- '*.go'`; fold leftovers into the rename commit via `git commit --fixup` + `git rebase -i --autosquash`
+  6. With the Environment & Tooling env vars set, verify: `go build ./...`, `go test ./internal/...`, `task lint`
 - The localResources config migration is tagged `v0.26.0`; it must stay after upstream's latest migration tag.
 - The user performs pushes (`git push --force-with-lease origin feature/LocalCDN`). Do not push or ask for credentials.
 
@@ -79,3 +86,7 @@ $env:GOLANGCI_LINT_CACHE = Join-Path $env:TEMP 'golangci-lint-cache'
 $env:NPM_CONFIG_OFFLINE = 'false'
 $env:NPM_CONFIG_CACHE = Join-Path $env:TEMP 'npm-cache'
 $env:PATH = (Join-Path $env:TEMP 'go\bin') + ';' + $env:PATH
+```
+
+- Build toolchain (Windows): wails CLI matching go.mod (`go install github.com/wailsapp/wails/v2/cmd/wails@<version-from-go.mod>`); golangci-lint **v2** (`go install github.com/golangci/golangci-lint/v2/cmd/golangci-lint@latest` — v1 cannot read Go 1.27 export data); NSIS 3.x on PATH (`winget install NSIS.NSIS`) for `task build:prod`.
+- If `wails build` fails with `internal error: package ... without types`, the CLI or caches are stale: match the wails CLI to go.mod, run `go clean -cache -modcache`, then rebuild.
