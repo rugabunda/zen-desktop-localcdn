@@ -88,5 +88,6 @@ $env:NPM_CONFIG_CACHE = Join-Path $env:TEMP 'npm-cache'
 $env:PATH = (Join-Path $env:TEMP 'go\bin') + ';' + $env:PATH
 ```
 
-- Build toolchain (Windows): wails CLI matching go.mod (`go install github.com/wailsapp/wails/v2/cmd/wails@<version-from-go.mod>`); golangci-lint **v2** (`go install github.com/golangci/golangci-lint/v2/cmd/golangci-lint@latest` — v1 cannot read Go 1.27 export data); NSIS 3.x on PATH (`winget install NSIS.NSIS`) for `task build:prod`.
+- Build toolchain (Windows): wails CLI matching go.mod (`go install github.com/wailsapp/wails/v2/cmd/wails@<version-from-go.mod>`); golangci-lint **v2** (`go install github.com/golangci/golangci-lint/v2/cmd/golangci-lint@latest` — v1 cannot read Go 1.27 export data); NSIS 3.x on PATH (`winget install NSIS.NSIS`) for `task build:prod`. `winget` does not refresh PATH in the running shell, so open a new shell or prepend `C:\Program Files (x86)\NSIS` to `$env:PATH` before building.
+- `task build:prod` writes `build/bin/Zen.exe` plus the NSIS installer (`build/bin/Zen-amd64-installer.exe`); the installer needs elevation and installs per-user under `%LocalAppData%\Programs\Zen\Zen`.
 - If `wails build` fails with `internal error: package ... without types`, the CLI or caches are stale: match the wails CLI to go.mod, run `go clean -cache -modcache`, then rebuild.
